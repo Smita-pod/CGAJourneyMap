@@ -1,30 +1,4 @@
-  const handleDepartmentToggle = (dept) => {
-    const deptValue = dept === 'All CGA Departments' ? 'all' : dept;
-    
-    if (deptValue === 'all') {
-      setSelectedDepartments(['all']);
-    } else {
-      setSelectedDepartments(prev => {
-        const newSelection = prev.filter(d => d !== 'all');
-        if (newSelection.includes(deptValue)) {
-          const updated = newSelection.filter(d => d !== deptValue);
-          return updated.length === 0 ? ['all'] : updated;
-        } else {
-          return [...newSelection, deptValue];
-        }
-      });
-    }
-  };
-
-  const getSelectedDepartmentsDisplay = () => {
-    if (selectedDepartments.includes('all')) {
-      return 'All CGA Departments';
-    }
-    if (selectedDepartments.length === 1) {
-      return selectedDepartments[0];
-    }
-    return `${selectedDepartments.length} departments selected`;
-  };import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronDown, Eye, EyeOff } from 'lucide-react';
 
 const CGAJourneyMap = () => {
@@ -37,7 +11,7 @@ const CGAJourneyMap = () => {
   const [showResources, setShowResources] = useState(true);
 
   const cgaDepartments = [
-    'All CGA Departments',
+    'All Departments',
     'Marketing',
     'Admissions',
     'Operations & SET',
@@ -47,7 +21,7 @@ const CGAJourneyMap = () => {
   ];
 
   const handleDepartmentToggle = (dept) => {
-    const deptValue = dept === 'All CGA Departments' ? 'all' : dept;
+    const deptValue = dept === 'All Departments' ? 'all' : dept;
     
     if (deptValue === 'all') {
       setSelectedDepartments(['all']);
@@ -66,7 +40,7 @@ const CGAJourneyMap = () => {
 
   const getSelectedDepartmentsDisplay = () => {
     if (selectedDepartments.includes('all')) {
-      return 'All CGA Departments';
+      return 'All Departments';
     }
     if (selectedDepartments.length === 1) {
       return selectedDepartments[0];
@@ -84,9 +58,9 @@ const CGAJourneyMap = () => {
     'active': {
       'Getting Started / Onboarding': ['Student', 'Resources', 'Operations & SET', 'Academics', 'Admissions', 'Community'],
       'Learning Experience': ['Student', 'Resources', 'Academics', 'Community', 'Operations & SET'],
-      'Extracurricular Engagement and Social Life': ['Student', 'Resources', 'Community', 'Academics', 'Operations & SET'],
+      'Extracurricular and Social life': ['Student', 'Resources', 'Community', 'Academics', 'Operations & SET'],
       'Ongoing Support': ['Student', 'Resources', 'Operations & SET', 'Academics'],
-      'Progress Monitoring & Assessments': ['Student', 'Resources', 'Academics'],
+      'Assessments': ['Student', 'Resources', 'Academics'],
       'External exam preparations': ['Student', 'Resources', 'Academics', 'Operations & SET'],
       'Re-enrollment': ['Student', 'Resources', 'Admissions', 'Academics']
     },
@@ -323,7 +297,11 @@ const CGAJourneyMap = () => {
           'Schedule classes',
           'Prepare necessary documentation'
         ],
-        resources: [],
+        resources: [
+          'Timetable Planner (with AOs)',
+          'Enrollment Form',
+          'T&Cs and other guides (in the enrollment form)'
+        ],
         departments: {
           'Admissions': [
             {
@@ -373,19 +351,22 @@ const CGAJourneyMap = () => {
           'Gets familiar with expectations'
         ],
         resources: [
-          'Welcome Email: Includes account setup instructions and schedules',
+          'Welcome Email: Google account signup',
+          'CGA Home Portal',
           'Academic Calendar',
-          'CGA Home Portal Setup',
           'Student Induction Course: Links to academic requirements, pastoral support, and tech guides',
           'Orientation Schedules',
           'Video Tutorials/Guides',
           'Class Timetables',
+          'Access to Canvas',
+          'Zoom',
+          'Teams',
           'Parent Portal Setup'
         ],
         departments: {
           'Operations & SET': [
             {
-              title: 'Student Experience Team (Britain)',
+              title: 'Student Experience Team',
               items: [
                 'Guides students through the enrollment',
                 'Sends welcome emails with login information (within 24 hours of a new-won deal notification)',
@@ -435,7 +416,6 @@ const CGAJourneyMap = () => {
           'Adjusts to online learning environment',
           'Manages time across time zones',
           'Use various learning platforms',
-          'Adapt to online learning environment',
           'Set up study space and routines',
           'Deals with technical issues',
           'Experiences both synchronous and asynchronous learning',
@@ -443,20 +423,22 @@ const CGAJourneyMap = () => {
         ],
         resources: [
           'CGA Home',
+          'Recorded classes',
           'Canvas',
-          'Academic progress tracking tools',
+          'OneNote',
+          'Learning resources',
+          'Canvas course material',
+          'Study guide',
+          'Library resources',
+          'Class materials',
+          'Practice questions',
+          'Reports: Academic progress tracking tools',
           'Pastoral care resources',
           'Feedback forms',
           'Parent-teacher conference scheduling system',
           'Zoom',
           'Teams',
-          'Learning resources',
-          'Recorded lectures, class materials, and practice questions',
-          'Technology guides/FAQs',
-          'Interactive Platform (Discussion threads, group projects, and forums)',
-          'Canvas course materials',
-          'Library resources',
-          'Study guides'
+          'Interactive Platform (Discussion threads, group projects, and forums)'
         ],
         departments: {
           'Academics': [
@@ -489,7 +471,7 @@ const CGAJourneyMap = () => {
               ]
             },
             {
-              title: 'Deans (Beth, Michael, Kate, Diane)',
+              title: 'Deans',
               items: [
                 'Run house assemblies',
                 'Oversee form teachers',
@@ -519,30 +501,30 @@ const CGAJourneyMap = () => {
         }
       },
       {
-        title: 'Extracurricular Engagement and Social Life',
+        title: 'Extracurricular and Social life',
         student: [
           'Joins clubs and activities',
           'Participates in house events',
           'Attends virtually organised activities',
           'Develops social connections',
           'Builds community connections',
-          'Feels so leadership roles',
+          'Takes on leadership roles',
           'Feels connected despite physical distance'
         ],
         resources: [
-          'CGA House Announcements',
-          'Faculty and Staff, CGA Chats, Houses, and events',
-          'Chat/Discussion forums',
-          'Tech Support: SIS assistance for technical issues',
+          'CGA Home Announcements',
+          'Faculty and Clubs: CGA Clubs, Houses, and events',
+          'Chat/Discussion boards',
+          '"Tech Support": SIS assistance for technical issues',
           'Student services',
-          'Events portal',
+          'Parent portal',
           'CGA Friends',
           'CGA Classrooms'
         ],
         departments: {
           'Community': [
             {
-              title: 'Community Team (Jessica)',
+              title: 'Community Team',
               items: [
                 'Organizes in-person and virtual meetups',
                 'Manages school newsletter',
@@ -561,7 +543,7 @@ const CGAJourneyMap = () => {
               ]
             },
             {
-              title: 'SEN Coordinator (Jane)',
+              title: 'SEN Coordinator',
               items: [
                 'Implements accommodation plans',
                 'Coordinates with teachers on modifications',
@@ -600,10 +582,10 @@ const CGAJourneyMap = () => {
       {
         title: 'Ongoing Support',
         student: [
-          'Receives set help when needed',
+          'Receives help when needed',
           'Communicates with teachers/staff',
           'Accesses academic services',
-          'Gets parental care',
+          'Gets pastoral care',
           'Uses technical support resources',
           'Navigates health/wellbeing challenges',
           'Accesses accommodations if needed',
@@ -612,11 +594,12 @@ const CGAJourneyMap = () => {
         ],
         resources: [
           'Student Experience Team: Dedicated team members and online FAQs',
-          'Teacher office hours',
-          'Peer support',
+          'CGA Home contact us page',
+          'Tech Support: For IT, SIS, and Zoom Guidance',
+          'Parent portal',
           'Teacher office hours',
           'Pastoral support resources',
-          'Academic guidance'
+          'Academic intervention resources'
         ],
         departments: {
           'Operations & SET': [
@@ -634,7 +617,7 @@ const CGAJourneyMap = () => {
               ]
             },
             {
-              title: 'SEN Coordinator (Liaison)',
+              title: 'SEN Coordinator',
               items: [
                 'Communicates with teachers on modifications',
                 'Provides ongoing support to SEN students'
@@ -655,7 +638,7 @@ const CGAJourneyMap = () => {
         }
       },
       {
-        title: 'Progress Monitoring & Assessments',
+        title: 'Assessments',
         student: [
           'Completes assessments',
           'Receives grades and feedback',
@@ -664,26 +647,30 @@ const CGAJourneyMap = () => {
           'Discusses performance with teachers',
           'Parents: see parent portal to monitor progress',
           'Receives guidance on academic improvement',
-          'Students meet with Academic Dean if enrolled as co-rok',
           'Identifies areas for improvement',
           'Sets academic goals',
           'Prepares for external exams',
           'Feels pressure during exam periods'
         ],
         resources: [
-          'Parent Portal: Student insights',
+          'Parent Portal-Student Insights',
           'CGA Home Feedback',
-          'SY Course Details'
+          'DV Course Details',
+          'Term Reports',
+          'Canvas and CGA Home: Assignments and Feedback',
+          'SIS Transcripts',
+          'Parent-Teacher meetings',
+          'Ad-hoc meetings (1:1s)'
         ],
         departments: {
           'Academics': [
             {
-              title: 'Academic Dean (GDPR)',
+              title: 'Academic Dean',
               items: [
                 'Identifies and contacts at-risk students',
                 'Monitors student academic performance and intervention',
                 'Monitors key students',
-                'Dean and Form Teachers MLT',
+                'Dean and Form Teachers coordination',
                 'Contacts student about performance',
                 'Contact parents about concerns',
                 'Arrange and implement support plans'
@@ -695,23 +682,23 @@ const CGAJourneyMap = () => {
       {
         title: 'External exam preparations',
         student: [
-          'Required to exam registration communications',
+          'Receives exam registration communications',
           'Attend sessions about exam processes',
           'Receives study guides, exam schedules, and the exam fees',
           'Completes exam registration for online exams',
           'Request special accommodations if needed',
           'Prepare home environment for online exams',
           'For offline exams: plan travel to exam centres',
-          'Prepare support exam preparation',
-          'Students participate in exam preparation sessions'
+          'Participate in exam preparation sessions'
         ],
         resources: [
           'Exam schedules',
           'Study resources',
-          'Test papers',
-          'Exam preparation guides',
+          'Past papers',
+          'Exam registration guides',
           'Exam techniques workshops',
-          'Subject revision guides'
+          'Subject revision guides',
+          'SIS Exam access arrangements'
         ],
         departments: {
           'Academics': [
@@ -724,7 +711,7 @@ const CGAJourneyMap = () => {
                 'Creates and distributes exam timetables',
                 'Coordinates exams administration',
                 'Support coursework timelines and instructions',
-                'Supports students during examination period (teachers: IGCSE and AL Pathway)',
+                'Supports students during examination period',
                 'Creates session during exam weeks',
                 'Provide subject-specific guidance',
                 'Recommend appropriate course level',
@@ -749,7 +736,7 @@ const CGAJourneyMap = () => {
       {
         title: 'Re-enrollment',
         student: [
-          'Attend subject selection consultants',
+          'Attend subject selection consultations',
           'Discuss future academic plans with form teachers',
           'Reviews academic performance for next academic year',
           'Consider university/career implications of choices',
@@ -762,6 +749,7 @@ const CGAJourneyMap = () => {
         resources: [
           'Course Catalog',
           'Course Planner',
+          'Academic planner (set by AOs)',
           'Re-enrollment form'
         ],
         departments: {
@@ -769,7 +757,7 @@ const CGAJourneyMap = () => {
             {
               title: 'Operations Team',
               items: [
-                'Coordinates cartons re-enrollment',
+                'Coordinates re-enrollment',
                 'Provides re-enrollment paperwork',
                 'Updates student information in systems',
                 'Creates confirmation emails',
@@ -779,18 +767,17 @@ const CGAJourneyMap = () => {
           ],
           'Academics': [
             {
-              title: 'Course and Form Teacher/Homeroom Teachers',
+              title: 'Course and Form Teachers',
               items: [
                 'Individual meeting about academic subject pathways',
-                'Confirms course and in appropriate course pathways',
-                'Support Form or in making course decisions',
+                'Confirms course and appropriate course pathways',
+                'Support students in making course decisions',
                 'Confirm class formation',
                 'Provides advice on academic route and potential outcomes',
                 'Confirms subject-readiness for new courses',
-                'Customize the development for new students',
                 'Provide subject-specific guidance',
                 'Recommend appropriate course level',
-                'Create additional academic support for all new students'
+                'Create additional academic support for students'
               ]
             }
           ]
@@ -860,7 +847,6 @@ const CGAJourneyMap = () => {
         ],
         resources: [
           'Graduation guide',
-          'Catalog',
           'University application resources',
           'Career guidance',
           'Transcript request process',
@@ -913,7 +899,7 @@ const CGAJourneyMap = () => {
               items: [
                 'Conducts final check-in before graduation',
                 'Solicits feedback on overall CGA experience',
-                'Requests reviews and testimonials (USDP)'
+                'Requests reviews and testimonials'
               ]
             }
           ]
@@ -962,26 +948,41 @@ const CGAJourneyMap = () => {
   };
 
   const painPoints = {
-    'pre-enrollment': [
-      'Low contact rates (many leads don\'t answer phones/emails)',
-      'Limited understanding of what makes online learning successful',
-      'Complex pricing structure (particularly US market)',
-      'Different expectations between regions (especially Asian markets)',
-      'Admissions testing not reliably predicting outcomes',
-      'Limited academic team involvement in enrollment process',
-      'Challenges identifying SEN students early',
+    'Learning and Awareness': [
       'CGA often initially considered as a "Plan B" rather than first choice',
       'Greenwich campus has limited visibility in search results (UK market)',
       'Regional differences in awareness and understanding',
       'Marketing not always aligned with academic capabilities'
     ],
-    'active': [
+    'Enquiry & Info gathering': [
+      'Low contact rates (many leads don\'t answer phones/emails)',
+      'Limited understanding of what makes online learning successful',
+      'Complex pricing structure (particularly US market)',
+      'Different expectations between regions (especially Asian markets)'
+    ],
+    'Admissions Consultation Phase': [
+      'Admissions testing not reliably predicting outcomes',
+      'Limited academic team involvement in enrollment process',
+      'Challenges identifying SEN students early'
+    ],
+    'Enrollment & Course selection': [
+      'Time zone differences causing delays in communication',
+      'Complex system interactions between Salesforce and PowerSchool',
+      'Limited academic team involvement in pre-enrollment decisions',
+      'Insufficient identification of SEN students early in the process',
+      'Multiple platforms creating confusion',
+      'Complex pricing structure',
+      'Payment requirements delaying Da Vinci start dates'
+    ],
+    'Getting Started / Onboarding': [
       'Gap between enrollment and class start (anxiety/buyer\'s remorse)',
       'Multiple platforms causing confusion (Canvas, CGA Home, Crimson App)',
       'No tracking system for induction course completion',
       'Outdated videos in induction materials (from 2019-2020)',
       'Lack of formal handover meetings between admissions and operations',
-      'No formal introduction to Academic Dean',
+      'No formal introduction to Academic Dean'
+    ],
+    'Learning Experience': [
       'Difficulty tracking academic progress across multiple platforms',
       'Inconsistent attendance tracking and enforcement',
       'Da Vinci program issues (missing grades, feedback)',
@@ -989,36 +990,78 @@ const CGAJourneyMap = () => {
       'Unresponsive students/parents when academic issues arise',
       'Limited visibility for parents into Da Vinci progress'
     ],
-    'post-graduate': [
+    'Extracurricular and Social life': [
+      'Limited informal student interactions compared to physical schools',
+      'Scaling community support with limited team resources',
+      'Low utilization of "corridor" social feature',
+      'Geographic dispersion limiting in-person connections',
+      'Confusion about who owns different aspects of community experience'
+    ],
+    'Ongoing Support': [],
+    'Assessments': [],
+    'External exam preparations': [
+      'Manual processes (spreadsheets, emails)',
+      'No centralized system for tracking exam information',
+      'Complex, lengthy emails that students often don\'t read',
+      'Separate invoicing for different exam sessions',
+      'Limited visibility into Da Vinci students\' exam plans'
+    ],
+    'Re-enrollment': [
+      'Divided focus for admissions team between new enrollments and re-enrollments',
+      'Complex course selection process',
+      'Balancing university goals with appropriate academic progression',
+      'Transitions between academic levels (IG to AS)',
+      'Inconsistent DV re-enrollment SOPs, particularly with pending examination scores'
+    ],
+    'University Applications': [],
+    'Graduation & Beyond': [
       'No formal "final sendoff" or exit process',
       'Limited alumni engagement and community',
       'Students "disappear" after graduation',
       'No exit meetings with Academic Dean'
-    ]
+    ],
+    'Alumni Engagement': []
   };
 
   const opportunities = {
-    'pre-enrollment': [
-      'Improve automated response systems (SMS capabilities)',
-      'Develop more content about successful online learning traits',
-      'Simplify pricing structure (e.g., standard tuition amount)',
-      'Better qualification of leads before consultation booking',
-      'Redesign admissions testing',
-      'More structured pre-approval process',
-      'Earlier identification of SEN students',
+    'Learning and Awareness': [
       'Improved coordination between marketing and academic teams',
       'Develop more region-specific marketing materials (especially UK)',
       'Better utilize UK-based teachers for marketing events',
       'Increase open days or similar showcase events'
     ],
-    'active': [
+    'Enquiry & Info gathering': [
+      'Improve automated response systems (SMS capabilities)',
+      'Develop more content about successful online learning traits',
+      'Simplify pricing structure (e.g., standard tuition amount)',
+      'Better qualification of leads before consultation booking'
+    ],
+    'Admissions Consultation Phase': [
+      'Redesign admissions testing',
+      'More structured pre-approval process',
+      'Earlier identification of SEN students'
+    ],
+    'Enrollment & Course selection': [
+      'Add formal application stage before enrollment',
+      'Increase interactions between admissions officers and academic teams in order to build trust in enrollment decisions',
+      'Increase academic team involvement in the enrollment process',
+      'Improve SEN student identification and accommodation planning',
+      'Better coordination between sales and academic teams',
+      'Develop standardized tuition pricing',
+      'Standardized tuition model',
+      'Simplifying the enrollment process',
+      'Better handling of student data between systems'
+    ],
+    'Getting Started / Onboarding': [
       'Create learning mode-specific induction content',
       'Implement formal handover meetings between departments',
       'Track induction course completion',
       'Develop clearer communication about platform usage',
       'Update orientation videos and materials',
       'Create a resource library for students that can be self-guided',
-      'Establish formal meetings with Academic Dean for all new students',
+      'Establish formal meetings with Academic Dean for all new students'
+    ],
+    'Learning Experience': [
       'Implement unified student management system',
       'Improve attendance tracking procedures',
       'Increase academic oversight of Da Vinci teachers',
@@ -1027,13 +1070,38 @@ const CGAJourneyMap = () => {
       'Improve parent portal features for Da Vinci program',
       'Increase parent engagement in child\'s educational journey'
     ],
-    'post-graduate': [
+    'Extracurricular and Social life': [
+      'Expand Dean involvement in community meetups',
+      'Establish parent chapter leaders for local meetups',
+      'Better integration of community events into academic calendars',
+      'Enhance "corridor" feature or create alternatives for social connection',
+      'Develop more consistent regional meetups'
+    ],
+    'Ongoing Support': [],
+    'Assessments': [],
+    'External exam preparations': [
+      'Dedicated "exams space" on CGA Home',
+      'Better data access and management',
+      'Automated fee calculation and payment',
+      'Dashboard for students to see entries and timetables',
+      'Improved guidance for first-time exam takers'
+    ],
+    'Re-enrollment': [
+      'Consider dedicated re-enrollment staff (USDP-specific)',
+      'Improve course selection guidance',
+      'Create more resources for academic level transitions',
+      'Better coordinate between admissions and academic teams',
+      'Utilize academic planner tool more effectively'
+    ],
+    'University Applications': [],
+    'Graduation & Beyond': [
       'Develop formal exit meetings with graduating students',
       'Create stronger alumni programming',
       'Establish alumni network for mentoring current students',
       'Better tracking of post-graduation outcomes',
       'Develop graduation traditions and ceremonies'
-    ]
+    ],
+    'Alumni Engagement': []
   };
 
   return (
@@ -1091,7 +1159,7 @@ const CGAJourneyMap = () => {
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-64 bg-white border rounded shadow-lg z-30 max-h-64 overflow-y-auto">
                 {cgaDepartments.map(dept => {
-                  const deptValue = dept === 'All CGA Departments' ? 'all' : dept;
+                  const deptValue = dept === 'All Departments' ? 'all' : dept;
                   const isSelected = selectedDepartments.includes(deptValue);
                   return (
                     <button
@@ -1150,8 +1218,8 @@ const CGAJourneyMap = () => {
         </div>
       </div>
 
-      <div className="w-full overflow-x-auto">
-        <div className="min-w-max p-4">
+      <div className="w-full">
+        <div className="p-4">
           {highlightedStep && (
             <div className="mb-4 p-4 bg-white rounded-lg border-2 border-blue-300 shadow-md">
               <h3 className="font-bold text-lg text-blue-800 mb-2">
@@ -1183,26 +1251,26 @@ const CGAJourneyMap = () => {
                 <p className="text-gray-600">Discovery & Decision</p>
               </div>
               
-              <div className="grid grid-cols-4 gap-4 min-w-max">
+              <div className="flex gap-4 w-full">
                 {journeySteps['pre-enrollment'].map((step, stepIdx) => (
-                  <div key={stepIdx} className="min-w-80">
+                  <div key={stepIdx} className="flex-1 flex flex-col">
                     <div 
                       className={`text-center mb-4 p-3 rounded-lg cursor-pointer transition-all duration-300 ${
-                        isStepHighlighted(step.title) ? 'bg-yellow-200 ring-2 ring-yellow-400' : 'bg-blue-50 hover:bg-blue-100'
+                        isStepHighlighted(step.title) ? 'bg-yellow-200 ring-2 ring-yellow-400' : 'bg-indigo-50 hover:bg-indigo-100'
                       }`}
                       onClick={() => setHighlightedStep(isStepHighlighted(step.title) ? null : step.title)}
                     >
                       <div className="flex items-center justify-center mb-2">
-                        <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                        <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
                           {stepIdx + 1}
                         </div>
                       </div>
-                      <h3 className="font-bold text-blue-800 text-sm">{step.title}</h3>
+                      <h3 className="font-bold text-indigo-800 text-sm">{step.title}</h3>
                       <p className="text-xs text-gray-600 mt-1">👆 Click to highlight departments</p>
                     </div>
 
-                    <div className="mb-4">
-                      <div className="bg-indigo-100 p-4 rounded-lg border-t-4 border-indigo-600">
+                    <div className="flex-1 flex flex-col">
+                      <div className="bg-indigo-100 p-4 rounded-lg border-t-4 border-indigo-600 flex-grow mb-4">
                         <div className="flex items-center gap-3 mb-3">
                           <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center">
                             <div className="w-3 h-3 bg-white rounded-full"></div>
@@ -1210,7 +1278,6 @@ const CGAJourneyMap = () => {
                           <h4 className="font-bold text-indigo-800 text-lg">Student Experience</h4>
                         </div>
                         
-                        {/* Student Actions */}
                         <div className="bg-white rounded-lg p-3 shadow-sm mb-3">
                           <h5 className="font-semibold text-indigo-700 text-sm mb-2">Student Actions</h5>
                           <ul className="text-sm text-gray-700 space-y-2">
@@ -1223,10 +1290,9 @@ const CGAJourneyMap = () => {
                           </ul>
                         </div>
 
-                        {/* Resources Section */}
                         {showResources && (
                           <div className={`bg-white rounded-lg p-3 shadow-sm transition-all duration-300 ${isDepartmentHighlighted('Resources', step.title) ? 'ring-2 ring-gray-400' : ''}`}>
-                            <h5 className="font-semibold text-gray-700 text-sm mb-2">Available Resources</h5>
+                            <h5 className="font-semibold text-gray-700 text-sm mb-2">Systems & Resources</h5>
                             {step.resources.length > 0 ? (
                               <ul className="text-sm text-gray-700 space-y-2">
                                 {step.resources.map((item, idx) => (
@@ -1242,57 +1308,59 @@ const CGAJourneyMap = () => {
                           </div>
                         )}
                       </div>
-                    </div>
 
-                    <div className="space-y-4">
-                      {Object.entries(step.departments).map(([dept, touchpoints]) => (
-                        shouldShowCGADepartment(dept) && (
-                          <div key={dept} className={`transition-all duration-300 ${isDepartmentHighlighted(dept, step.title) ? 'ring-2 ring-red-400' : ''}`}>
-                            <div className="border-2 rounded-lg p-4 bg-white" style={{borderColor: '#910027'}}>
-                              <div className="flex items-center gap-3 mb-3">
-                                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl" style={{backgroundColor: '#910027'}}>
-                                  {getDepartmentIcon(dept)}
-                                </div>
-                                <h4 className="font-semibold text-gray-800 text-sm flex-1">{dept}:</h4>
-                              </div>
-                              <div className="space-y-3 max-h-32 overflow-y-auto">
-                                {touchpoints.map((touchpoint, idx) => (
-                                  <div key={idx}>
-                                    <h5 className="font-medium text-gray-700 text-xs mb-1">{touchpoint.title}</h5>
-                                    <ul className="text-xs text-gray-600 space-y-1">
-                                      {touchpoint.items.map((item, itemIdx) => (
-                                        <li key={itemIdx} className="flex items-start">
-                                          <span className="w-1 h-1 bg-gray-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                                          {item}
-                                        </li>
-                                      ))}
-                                    </ul>
+                      <div className="flex flex-col space-y-4">
+                        {Object.entries(step.departments).map(([dept, touchpoints]) => (
+                          shouldShowCGADepartment(dept) && (
+                            <div key={dept} className={`transition-all duration-300 ${isDepartmentHighlighted(dept, step.title) ? 'ring-2 ring-red-400' : ''}`}>
+                              <div className="border-2 rounded-lg p-4 bg-white" style={{borderColor: '#910027'}}>
+                                <div className="flex items-center gap-3 mb-3">
+                                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl" style={{backgroundColor: '#910027'}}>
+                                    {getDepartmentIcon(dept)}
                                   </div>
-                                ))}
+                                  <h4 className="font-semibold text-gray-800 text-sm flex-1">{dept}:</h4>
+                                </div>
+                                <div className="space-y-3 max-h-32 overflow-y-auto">
+                                  {touchpoints.map((touchpoint, idx) => (
+                                    <div key={idx}>
+                                      <h5 className="font-medium text-gray-700 text-xs mb-1">{touchpoint.title}</h5>
+                                      <ul className="text-xs text-gray-600 space-y-1">
+                                        {touchpoint.items.map((item, itemIdx) => (
+                                          <li key={itemIdx} className="flex items-start">
+                                            <span className="w-1 h-1 bg-gray-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                                            {item}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        )
-                      ))}
+                          )
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
 
               {showPainPoints && (
-                <div className="mt-8 grid grid-cols-4 gap-4">
-                  {Array.from({length: 4}, (_, colIdx) => (
-                    <div key={colIdx} className="bg-red-50 border border-red-200 rounded-lg p-3">
-                      <h4 className="font-semibold text-red-800 text-sm mb-2 flex items-center">
-                        <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                        Pain Point
-                      </h4>
-                      <div className="space-y-2">
-                        {painPoints['pre-enrollment'].slice(colIdx * 5, (colIdx + 1) * 5).map((pain, idx) => (
-                          <div key={idx} className="bg-white p-2 rounded border-l-4 border-red-400">
-                            <p className="text-xs text-gray-700">{pain}</p>
-                          </div>
-                        ))}
+                <div className="mt-8 flex gap-4 w-full">
+                  {journeySteps['pre-enrollment'].map((step, stepIdx) => (
+                    <div key={stepIdx} className="flex-1">
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                        <h4 className="font-semibold text-red-800 text-sm mb-2 flex items-center">
+                          <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                          Pain Points
+                        </h4>
+                        <div className="space-y-2">
+                          {(painPoints[step.title] || []).map((pain, idx) => (
+                            <div key={idx} className="bg-white p-2 rounded border-l-4 border-red-400">
+                              <p className="text-xs text-gray-700">{pain}</p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1300,19 +1368,21 @@ const CGAJourneyMap = () => {
               )}
 
               {showOpportunities && (
-                <div className="mt-4 grid grid-cols-4 gap-4">
-                  {Array.from({length: 4}, (_, colIdx) => (
-                    <div key={colIdx} className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                      <h4 className="font-semibold text-yellow-800 text-sm mb-2 flex items-center">
-                        <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
-                        Gain Point
-                      </h4>
-                      <div className="space-y-2">
-                        {opportunities['pre-enrollment'].slice(colIdx * 5, (colIdx + 1) * 5).map((opp, idx) => (
-                          <div key={idx} className="bg-white p-2 rounded border-l-4 border-yellow-400">
-                            <p className="text-xs text-gray-700">{opp}</p>
-                          </div>
-                        ))}
+                <div className="mt-4 flex gap-4 w-full">
+                  {journeySteps['pre-enrollment'].map((step, stepIdx) => (
+                    <div key={stepIdx} className="flex-1">
+                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                        <h4 className="font-semibold text-yellow-800 text-sm mb-2 flex items-center">
+                          <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                          Opportunities
+                        </h4>
+                        <div className="space-y-2">
+                          {(opportunities[step.title] || []).map((opp, idx) => (
+                            <div key={idx} className="bg-white p-2 rounded border-l-4 border-yellow-400">
+                              <p className="text-xs text-gray-700">{opp}</p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1328,9 +1398,9 @@ const CGAJourneyMap = () => {
                 <p className="text-gray-600">Learning & Growth</p>
               </div>
               
-              <div className="grid grid-cols-7 gap-4 min-w-max">
+              <div className="flex gap-4 w-full items-start">
                 {journeySteps['active'].map((step, stepIdx) => (
-                  <div key={stepIdx} className="min-w-80">
+                  <div key={stepIdx} className="flex-1 flex flex-col">
                     <div 
                       className={`text-center mb-4 p-3 rounded-lg cursor-pointer transition-all duration-300 ${
                         isStepHighlighted(step.title) ? 'bg-yellow-200 ring-2 ring-yellow-400' : 'bg-green-50 hover:bg-green-100'
@@ -1346,88 +1416,98 @@ const CGAJourneyMap = () => {
                       <p className="text-xs text-gray-600 mt-1">👆 Click to highlight departments</p>
                     </div>
 
-                    <div className="mb-4 h-40">
-                      <div className="bg-blue-600 text-white px-3 py-2 rounded-t text-sm font-medium">
-                        Student
-                      </div>
-                      <div className="bg-white border border-blue-200 rounded-b p-3 h-32 overflow-y-auto">
-                        <ul className="text-xs text-gray-600 space-y-1">
-                          {step.student.map((item, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {showResources && (
-                      <div className={`mb-4 h-40 transition-all duration-300 ${isDepartmentHighlighted('Resources', step.title) ? 'ring-2 ring-purple-400' : ''}`}>
-                        <div className="bg-purple-600 text-white px-3 py-2 rounded-t text-sm font-medium">
-                          Resources
-                        </div>
-                        <div className="bg-white border border-purple-200 rounded-b p-3 h-32 overflow-y-auto">
-                          {step.resources.length > 0 ? (
-                            <ul className="text-xs text-gray-600 space-y-1">
-                              {step.resources.map((item, idx) => (
-                                <li key={idx} className="flex items-start">
-                                  <span className="w-1 h-1 bg-purple-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : (
-                            <p className="text-xs text-gray-400 italic">No resources for this step</p>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="space-y-4">
-                      {Object.entries(step.departments).map(([dept, touchpoints]) => (
-                        shouldShowCGADepartment(dept) && (
-                          <div key={dept} className={`h-48 transition-all duration-300 ${isDepartmentHighlighted(dept, step.title) ? 'ring-2 ring-red-400' : ''}`}>
-                            <div className="bg-red-600 text-white px-3 py-2 rounded-t text-sm font-medium">
-                              {dept}
-                            </div>
-                            <div className="bg-white border border-red-200 rounded-b p-3 h-40 overflow-y-auto space-y-3">
-                              {touchpoints.map((touchpoint, idx) => (
-                                <div key={idx}>
-                                  <h4 className="font-medium text-gray-800 text-xs mb-1">{touchpoint.title}</h4>
-                                  <ul className="text-xs text-gray-600 space-y-1">
-                                    {touchpoint.items.map((item, itemIdx) => (
-                                      <li key={itemIdx} className="flex items-start">
-                                        <span className="w-1 h-1 bg-red-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                                        {item}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))}
-                            </div>
+                    <div className="flex-1 flex flex-col">
+                      <div className="bg-indigo-100 p-4 rounded-lg border-t-4 border-indigo-600 flex-grow mb-4">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center">
+                            <div className="w-3 h-3 bg-white rounded-full"></div>
                           </div>
-                        )
-                      ))}
+                          <h4 className="font-bold text-indigo-800 text-lg">Student Experience</h4>
+                        </div>
+                        
+                        <div className="bg-white rounded-lg p-3 shadow-sm mb-3">
+                          <h5 className="font-semibold text-indigo-700 text-sm mb-2">Student Actions</h5>
+                          <ul className="text-sm text-gray-700 space-y-2">
+                            {step.student.map((item, idx) => (
+                              <li key={idx} className="flex items-start">
+                                <span className="w-2 h-2 bg-indigo-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {showResources && (
+                          <div className={`bg-white rounded-lg p-3 shadow-sm transition-all duration-300 ${isDepartmentHighlighted('Resources', step.title) ? 'ring-2 ring-gray-400' : ''}`}>
+                            <h5 className="font-semibold text-gray-700 text-sm mb-2">Systems & Resources</h5>
+                            {step.resources.length > 0 ? (
+                              <ul className="text-sm text-gray-700 space-y-2">
+                                {step.resources.map((item, idx) => (
+                                  <li key={idx} className="flex items-start">
+                                    <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <p className="text-sm text-gray-400 italic">No resources for this step</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex flex-col space-y-4">
+                        {Object.entries(step.departments).map(([dept, touchpoints]) => (
+                          shouldShowCGADepartment(dept) && (
+                            <div key={dept} className={`transition-all duration-300 ${isDepartmentHighlighted(dept, step.title) ? 'ring-2 ring-red-400' : ''}`}>
+                              <div className="border-2 rounded-lg p-4 bg-white" style={{borderColor: '#910027'}}>
+                                <div className="flex items-center gap-3 mb-3">
+                                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl" style={{backgroundColor: '#910027'}}>
+                                    {getDepartmentIcon(dept)}
+                                  </div>
+                                  <h4 className="font-semibold text-gray-800 text-sm flex-1">{dept}:</h4>
+                                </div>
+                                <div className="space-y-3 max-h-32 overflow-y-auto">
+                                  {touchpoints.map((touchpoint, idx) => (
+                                    <div key={idx}>
+                                      <h5 className="font-medium text-gray-700 text-xs mb-1">{touchpoint.title}</h5>
+                                      <ul className="text-xs text-gray-600 space-y-1">
+                                        {touchpoint.items.map((item, itemIdx) => (
+                                          <li key={itemIdx} className="flex items-start">
+                                            <span className="w-1 h-1 bg-gray-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                                            {item}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
 
               {showPainPoints && (
-                <div className="mt-8 grid grid-cols-7 gap-4">
-                  {Array.from({length: 7}, (_, colIdx) => (
-                    <div key={colIdx} className="bg-red-50 border border-red-200 rounded-lg p-3">
-                      <h4 className="font-semibold text-red-800 text-sm mb-2 flex items-center">
-                        <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                        Pain Point
-                      </h4>
-                      <div className="space-y-2">
-                        {painPoints['active'].slice(colIdx * 3, (colIdx + 1) * 3).map((pain, idx) => (
-                          <div key={idx} className="bg-white p-2 rounded border-l-4 border-red-400">
-                            <p className="text-xs text-gray-700">{pain}</p>
-                          </div>
-                        ))}
+                <div className="mt-8 flex gap-4 w-full items-start">
+                  {journeySteps['active'].map((step, stepIdx) => (
+                    <div key={stepIdx} className="flex-1">
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                        <h4 className="font-semibold text-red-800 text-sm mb-2 flex items-center">
+                          <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                          Pain Points
+                        </h4>
+                        <div className="space-y-2">
+                          {(painPoints[step.title] || []).map((pain, idx) => (
+                            <div key={idx} className="bg-white p-2 rounded border-l-4 border-red-400">
+                              <p className="text-xs text-gray-700">{pain}</p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1435,19 +1515,21 @@ const CGAJourneyMap = () => {
               )}
 
               {showOpportunities && (
-                <div className="mt-4 grid grid-cols-7 gap-4">
-                  {Array.from({length: 7}, (_, colIdx) => (
-                    <div key={colIdx} className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                      <h4 className="font-semibold text-yellow-800 text-sm mb-2 flex items-center">
-                        <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
-                        Gain Point
-                      </h4>
-                      <div className="space-y-2">
-                        {opportunities['active'].slice(colIdx * 3, (colIdx + 1) * 3).map((opp, idx) => (
-                          <div key={idx} className="bg-white p-2 rounded border-l-4 border-yellow-400">
-                            <p className="text-xs text-gray-700">{opp}</p>
-                          </div>
-                        ))}
+                <div className="mt-4 flex gap-4 w-full">
+                  {journeySteps['active'].map((step, stepIdx) => (
+                    <div key={stepIdx} className="flex-1">
+                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                        <h4 className="font-semibold text-yellow-800 text-sm mb-2 flex items-center">
+                          <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                          Opportunities
+                        </h4>
+                        <div className="space-y-2">
+                          {(opportunities[step.title] || []).map((opp, idx) => (
+                            <div key={idx} className="bg-white p-2 rounded border-l-4 border-yellow-400">
+                              <p className="text-xs text-gray-700">{opp}</p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1463,9 +1545,9 @@ const CGAJourneyMap = () => {
                 <p className="text-gray-600">Career & Alumni</p>
               </div>
               
-              <div className="grid grid-cols-3 gap-4 min-w-max">
+              <div className="flex gap-4 w-full">
                 {journeySteps['post-graduate'].map((step, stepIdx) => (
-                  <div key={stepIdx} className="min-w-80">
+                  <div key={stepIdx} className="flex-1 flex flex-col">
                     <div 
                       className={`text-center mb-4 p-3 rounded-lg cursor-pointer transition-all duration-300 ${
                         isStepHighlighted(step.title) ? 'bg-yellow-200 ring-2 ring-yellow-400' : 'bg-yellow-50 hover:bg-yellow-100'
@@ -1481,88 +1563,98 @@ const CGAJourneyMap = () => {
                       <p className="text-xs text-gray-600 mt-1">👆 Click to highlight departments</p>
                     </div>
 
-                    <div className="mb-4 h-40">
-                      <div className="bg-blue-600 text-white px-3 py-2 rounded-t text-sm font-medium">
-                        Student
-                      </div>
-                      <div className="bg-white border border-blue-200 rounded-b p-3 h-32 overflow-y-auto">
-                        <ul className="text-xs text-gray-600 space-y-1">
-                          {step.student.map((item, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="w-1 h-1 bg-blue-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {showResources && (
-                      <div className={`mb-4 h-40 transition-all duration-300 ${isDepartmentHighlighted('Resources', step.title) ? 'ring-2 ring-purple-400' : ''}`}>
-                        <div className="bg-purple-600 text-white px-3 py-2 rounded-t text-sm font-medium">
-                          Resources
-                        </div>
-                        <div className="bg-white border border-purple-200 rounded-b p-3 h-32 overflow-y-auto">
-                          {step.resources.length > 0 ? (
-                            <ul className="text-xs text-gray-600 space-y-1">
-                              {step.resources.map((item, idx) => (
-                                <li key={idx} className="flex items-start">
-                                  <span className="w-1 h-1 bg-purple-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : (
-                            <p className="text-xs text-gray-400 italic">No resources for this step</p>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="space-y-4">
-                      {Object.entries(step.departments).map(([dept, touchpoints]) => (
-                        shouldShowCGADepartment(dept) && (
-                          <div key={dept} className={`h-48 transition-all duration-300 ${isDepartmentHighlighted(dept, step.title) ? 'ring-2 ring-red-400' : ''}`}>
-                            <div className="bg-red-600 text-white px-3 py-2 rounded-t text-sm font-medium">
-                              {dept}
-                            </div>
-                            <div className="bg-white border border-red-200 rounded-b p-3 h-40 overflow-y-auto space-y-3">
-                              {touchpoints.map((touchpoint, idx) => (
-                                <div key={idx}>
-                                  <h4 className="font-medium text-gray-800 text-xs mb-1">{touchpoint.title}</h4>
-                                  <ul className="text-xs text-gray-600 space-y-1">
-                                    {touchpoint.items.map((item, itemIdx) => (
-                                      <li key={itemIdx} className="flex items-start">
-                                        <span className="w-1 h-1 bg-red-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                                        {item}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))}
-                            </div>
+                    <div className="flex-1 flex flex-col">
+                      <div className="bg-indigo-100 p-4 rounded-lg border-t-4 border-indigo-600 flex-grow mb-4">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center">
+                            <div className="w-3 h-3 bg-white rounded-full"></div>
                           </div>
-                        )
-                      ))}
+                          <h4 className="font-bold text-indigo-800 text-lg">Student Experience</h4>
+                        </div>
+                        
+                        <div className="bg-white rounded-lg p-3 shadow-sm mb-3">
+                          <h5 className="font-semibold text-indigo-700 text-sm mb-2">Student Actions</h5>
+                          <ul className="text-sm text-gray-700 space-y-2">
+                            {step.student.map((item, idx) => (
+                              <li key={idx} className="flex items-start">
+                                <span className="w-2 h-2 bg-indigo-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {showResources && (
+                          <div className={`bg-white rounded-lg p-3 shadow-sm transition-all duration-300 ${isDepartmentHighlighted('Resources', step.title) ? 'ring-2 ring-gray-400' : ''}`}>
+                            <h5 className="font-semibold text-gray-700 text-sm mb-2">Systems & Resources</h5>
+                            {step.resources.length > 0 ? (
+                              <ul className="text-sm text-gray-700 space-y-2">
+                                {step.resources.map((item, idx) => (
+                                  <li key={idx} className="flex items-start">
+                                    <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <p className="text-sm text-gray-400 italic">No resources for this step</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex flex-col space-y-4">
+                        {Object.entries(step.departments).map(([dept, touchpoints]) => (
+                          shouldShowCGADepartment(dept) && (
+                            <div key={dept} className={`transition-all duration-300 ${isDepartmentHighlighted(dept, step.title) ? 'ring-2 ring-red-400' : ''}`}>
+                              <div className="border-2 rounded-lg p-4 bg-white" style={{borderColor: '#910027'}}>
+                                <div className="flex items-center gap-3 mb-3">
+                                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl" style={{backgroundColor: '#910027'}}>
+                                    {getDepartmentIcon(dept)}
+                                  </div>
+                                  <h4 className="font-semibold text-gray-800 text-sm flex-1">{dept}:</h4>
+                                </div>
+                                <div className="space-y-3 max-h-32 overflow-y-auto">
+                                  {touchpoints.map((touchpoint, idx) => (
+                                    <div key={idx}>
+                                      <h5 className="font-medium text-gray-700 text-xs mb-1">{touchpoint.title}</h5>
+                                      <ul className="text-xs text-gray-600 space-y-1">
+                                        {touchpoint.items.map((item, itemIdx) => (
+                                          <li key={itemIdx} className="flex items-start">
+                                            <span className="w-1 h-1 bg-gray-400 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                                            {item}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
 
               {showPainPoints && (
-                <div className="mt-8 grid grid-cols-3 gap-4">
-                  {Array.from({length: 3}, (_, colIdx) => (
-                    <div key={colIdx} className="bg-red-50 border border-red-200 rounded-lg p-3">
-                      <h4 className="font-semibold text-red-800 text-sm mb-2 flex items-center">
-                        <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                        Pain Point
-                      </h4>
-                      <div className="space-y-2">
-                        {painPoints['post-graduate'].slice(colIdx * 2, (colIdx + 1) * 2).map((pain, idx) => (
-                          <div key={idx} className="bg-white p-2 rounded border-l-4 border-red-400">
-                            <p className="text-xs text-gray-700">{pain}</p>
-                          </div>
-                        ))}
+                <div className="mt-8 flex gap-4 w-full">
+                  {journeySteps['post-graduate'].map((step, stepIdx) => (
+                    <div key={stepIdx} className="flex-1">
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                        <h4 className="font-semibold text-red-800 text-sm mb-2 flex items-center">
+                          <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                          Pain Points
+                        </h4>
+                        <div className="space-y-2">
+                          {(painPoints[step.title] || []).map((pain, idx) => (
+                            <div key={idx} className="bg-white p-2 rounded border-l-4 border-red-400">
+                              <p className="text-xs text-gray-700">{pain}</p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1570,19 +1662,21 @@ const CGAJourneyMap = () => {
               )}
 
               {showOpportunities && (
-                <div className="mt-4 grid grid-cols-3 gap-4">
-                  {Array.from({length: 3}, (_, colIdx) => (
-                    <div key={colIdx} className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                      <h4 className="font-semibold text-yellow-800 text-sm mb-2 flex items-center">
-                        <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
-                        Gain Point
-                      </h4>
-                      <div className="space-y-2">
-                        {opportunities['post-graduate'].slice(colIdx * 2, (colIdx + 1) * 2).map((opp, idx) => (
-                          <div key={idx} className="bg-white p-2 rounded border-l-4 border-yellow-400">
-                            <p className="text-xs text-gray-700">{opp}</p>
-                          </div>
-                        ))}
+                <div className="mt-4 flex gap-4 w-full">
+                  {journeySteps['post-graduate'].map((step, stepIdx) => (
+                    <div key={stepIdx} className="flex-1">
+                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                        <h4 className="font-semibold text-yellow-800 text-sm mb-2 flex items-center">
+                          <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                          Opportunities
+                        </h4>
+                        <div className="space-y-2">
+                          {(opportunities[step.title] || []).map((opp, idx) => (
+                            <div key={idx} className="bg-white p-2 rounded border-l-4 border-yellow-400">
+                              <p className="text-xs text-gray-700">{opp}</p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
